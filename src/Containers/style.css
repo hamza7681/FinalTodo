@@ -1,0 +1,64 @@
+.main{
+    width: 400px;
+    height: 430px;
+    background-color: white;
+    margin-top: 8%;
+    border-radius: 8px;
+}
+
+.input_field{
+    height: 40px;
+    width: 80%;
+    outline: none;
+  }
+  
+  .input_field:focus{
+    outline: none;
+    border-radius: 4px;
+  }
+
+  .icon_box{
+    background-color: #6a3ccf;
+    padding: 2.7%;
+    border-radius: 4px;
+    margin-left: 1%;
+  }
+  
+  .icon1{
+    color:white;
+    font-size: 25px;
+  }
+
+  .task{
+    background-color: rgb(238, 238, 238);
+   list-style: none;
+    width: 93%;
+    padding: 0;
+  
+  position: relative;
+  }
+  
+  .list_task{
+    padding: 2%;
+    color: grey;
+    font-weight: bold;
+  }
+
+  .icon2{
+    color:white;
+    font-size: 25px;
+  }
+  
+  .icon_box2{
+    background-color: #db3030;
+    padding: 2%;
+    border-radius: 4px;
+    position: absolute;
+    right: 0;
+   top: 0;
+  }
+  
+  .task_div{
+    overflow-y: scroll;
+    height: 280px;
+  }
