@@ -62,3 +62,9 @@
     overflow-y: scroll;
     height: 280px;
   }
+
+  @media screen and (max-width:768px){
+    .main{
+      width: 90%;
+    }
+  }
