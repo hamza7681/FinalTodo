@@ -8,6 +8,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [passError, setPassError] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -25,7 +26,16 @@ function Login() {
         localStorage.setItem("token", userCredential._tokenResponse.idToken);
         history.push("/dashboard");
       })
-      .catch((e) => alert(e.message))
+      .catch((e) => {
+        switch(e.code){
+          case 'auth/invalid-email':
+            alert('Please write valid Email')
+            break;
+            case 'auth/wrong-password':
+            alert('Please write Correct Password')
+            break;
+        }
+      })
       .finally(() => setLoading(false));
   };
 
@@ -42,6 +52,7 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          
           <br/><br/>
          
           <input

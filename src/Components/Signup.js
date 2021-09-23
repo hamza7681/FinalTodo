@@ -1,11 +1,11 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import './design.css'
+import "./design.css";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -30,50 +30,71 @@ function Signup() {
           .then(() => history.push("/"))
           .catch((e) => alert(e.message));
       })
-      .catch((e) => alert(e.message))
+      .catch((e) => {
+        switch (e.code) {
+          case "auth/weak-password":
+            alert("Password must be at least 6 character long");
+            break;
+          case "auth/invalid-email":
+            alert("Please write valid email");
+            break;
+          case "auth/email-already-in-use":
+            alert("Email Already Used");
+            break;
+        }
+      })
       .finally(() => setLoading(false));
   };
+
+  // auth/email-already-in-use
+  // auth/invalid-email
+  //auth/weak-password
 
   return (
     <>
       <div className="container login_main2">
         <div className="container login_field2">
-         
           <input
             type="text"
             name="name"
             className="field"
-            placeholder='Write Your Name...'
+            placeholder="Write Your Name..."
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-         <br/><br/>
+          <br />
+          <br />
           <input
             type="email"
             name="email"
             className="field"
-            placeholder='Write Your Email...'
+            placeholder="Write Your Email..."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-       <br/><br/>
+          <br />
+          <br />
           <input
             type="password"
             name="password"
             className="field"
-            placeholder='Write Your Password...'
+            placeholder="Write Your Password..."
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <br/><br/>
-          <div className='text-center'>
-          <span className="btn_login" onClick={onSignup}>
-            {loading ? "Creating user ..." : "Sign Up"}
-          </span>
-          <br/><br/>
-          <Link to="/" className='link'> Already have an Account? </Link>
+          <br />
+          <br />
+          <div className="text-center">
+            <span className="btn_login" onClick={onSignup}>
+              {loading ? "Creating user ..." : "Sign Up"}
+            </span>
+            <br />
+            <br />
+            <Link to="/" className="link">
+              {" "}
+              Already have an Account?{" "}
+            </Link>
           </div>
-          
         </div>
       </div>
     </>
